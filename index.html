@@ -1,0 +1,552 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080914">
+  <meta name="description" content="WizzyDev — exploring creative development, AI-assisted websites, modern web design and interactive digital experiences.">
+  <title>WizzyDev | Creative Developer</title>
+
+  <style>
+    :root {
+      --bg: #080914;
+      --panel: #101225;
+      --text: #f5f5ff;
+      --muted: #a5a8c3;
+      --blue: #65e5ff;
+      --purple: #a78bfa;
+      --line: rgba(255,255,255,.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(ellipse at 85% 5%, rgba(91,65,190,.18), transparent 35%),
+        radial-gradient(ellipse at 5% 40%, rgba(30,130,180,.10), transparent 35%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    .container { width: min(1100px, 90%); margin: auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(8,9,20,.82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.45rem;
+      font-weight: 850;
+      letter-spacing: -1px;
+    }
+
+    .logo span { color: var(--blue); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 23px;
+      font-size: .9rem;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover { color: var(--blue); }
+
+    .nav-cta {
+      border: 1px solid rgba(101,229,255,.45);
+      padding: 9px 15px;
+      border-radius: 999px;
+      color: var(--blue) !important;
+    }
+
+    .hero {
+      min-height: 650px;
+      padding: 100px 0 90px;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      font-size: .78rem;
+      font-weight: 750;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 6.5vw, 5.5rem);
+      line-height: 1.04;
+      letter-spacing: -4px;
+      max-width: 700px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(100deg, var(--blue), var(--purple), #f0abfc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 510px;
+      margin: 25px 0 30px;
+    }
+
+    .actions { display: flex; gap: 13px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 48px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: .92rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .btn:hover { transform: translateY(-3px); }
+
+    .btn-primary {
+      color: #070914;
+      background: linear-gradient(110deg, var(--blue), #b6a0ff);
+      box-shadow: 0 0 28px rgba(101,229,255,.14);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.035);
+    }
+
+    .hero-art {
+      min-height: 330px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      perspective: 800px;
+    }
+
+    .orb {
+      width: min(270px, 65vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      position: relative;
+      background:
+        radial-gradient(circle at 30% 25%, #ffffff 0, #b5f7ff 3%, transparent 13%),
+        radial-gradient(circle at 35% 30%, #74eaff 0, #6852dc 28%, #17112f 57%, #080914 72%);
+      box-shadow:
+        inset -20px -20px 45px rgba(0,0,0,.7),
+        0 0 50px rgba(101,229,255,.25),
+        0 0 110px rgba(130,85,255,.2);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .orb::before, .orb::after {
+      content: "";
+      position: absolute;
+      inset: -18px;
+      border: 1px solid rgba(101,229,255,.6);
+      border-radius: 50%;
+      transform: rotateX(68deg) rotateZ(-25deg);
+    }
+
+    .orb::after {
+      inset: -36px;
+      border-color: rgba(167,139,250,.55);
+      transform: rotateX(70deg) rotateZ(45deg);
+    }
+
+    .orbit-label {
+      position: absolute;
+      bottom: 12px;
+      color: var(--muted);
+      font-size: .8rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotateY(-10deg); }
+      50% { transform: translateY(-16px) rotateY(12deg); }
+    }
+
+    section { padding: 80px 0; }
+
+    .section-heading { margin-bottom: 34px; }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -1.5px;
+      line-height: 1.15;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      margin-top: 12px;
+      max-width: 620px;
+    }
+
+    .about-panel {
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(255,255,255,.045), rgba(255,255,255,.015));
+      padding: 30px;
+      border-radius: 22px;
+    }
+
+    .about-panel p { color: var(--muted); margin-bottom: 14px; }
+    .about-panel p:last-child { margin-bottom: 0; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 17px;
+    }
+
+    .card {
+      padding: 25px;
+      border: 1px solid var(--line);
+      border-radius: 19px;
+      background: rgba(255,255,255,.025);
+      transition: transform .25s, border-color .25s, background .25s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(101,229,255,.45);
+      background: rgba(101,229,255,.04);
+    }
+
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 18px;
+    }
+
+    .card h3 { font-size: 1.08rem; margin-bottom: 9px; }
+    .card p { color: var(--muted); font-size: .92rem; }
+
+    .project-tag {
+      display: inline-block;
+      color: var(--blue);
+      background: rgba(101,229,255,.08);
+      border: 1px solid rgba(101,229,255,.17);
+      padding: 4px 9px;
+      border-radius: 99px;
+      font-size: .72rem;
+      margin-bottom: 15px;
+    }
+
+    .project-visual {
+      height: 130px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      display: grid;
+      place-items: center;
+      font-size: 2.4rem;
+      background:
+        radial-gradient(circle at 70% 20%, rgba(167,139,250,.4), transparent 40%),
+        linear-gradient(135deg, #171b3b, #0a1525);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .skill-list { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .skill {
+      padding: 9px 13px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.035);
+      color: #d9dcf4;
+      border-radius: 9px;
+      font-size: .87rem;
+    }
+
+    .contact-panel {
+      text-align: center;
+      padding: 50px 25px;
+      border-radius: 24px;
+      border: 1px solid rgba(101,229,255,.2);
+      background: radial-gradient(ellipse at top, rgba(93,80,190,.16), transparent 70%);
+    }
+
+    .contact-panel h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: -1.5px;
+    }
+
+    .contact-panel p {
+      max-width: 550px;
+      margin: 15px auto 25px;
+      color: var(--muted);
+    }
+
+    .contact-details {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    .contact-details a:hover { color: var(--blue); }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 24px 0;
+      color: var(--muted);
+      font-size: .82rem;
+      text-align: center;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 760px) {
+      .nav-links { gap: 13px; font-size: .8rem; }
+      .nav-cta { display: none; }
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 75px 0 45px;
+        gap: 10px;
+      }
+      h1 { letter-spacing: -2px; }
+      .hero-copy { margin-left: auto; margin-right: auto; }
+      .actions { justify-content: center; }
+      .hero-art { min-height: 310px; }
+      .orb { width: 190px; }
+      section { padding: 60px 0; }
+      .grid { grid-template-columns: 1fr; }
+      .about-panel { padding: 23px; }
+    }
+
+    @media (max-width: 380px) {
+      .nav-links { gap: 9px; font-size: .75rem; }
+      .logo { font-size: 1.2rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="container" aria-label="Main navigation">
+      <a class="logo" href="#home">Wizzy<span>Dev</span>.</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a class="nav-cta" href="#contact">Let's Talk ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="hero" id="home">
+        <div>
+          <p class="eyebrow">Creative Developer in Progress</p>
+          <h1>I Turn Ideas Into <span class="gradient-text">Digital Experiences.</span></h1>
+          <p class="hero-copy">
+            Exploring the intersection of AI, creative coding and modern web design
+            to build digital experiences that feel different.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#projects">Explore My Work ↗</a>
+            <a class="btn btn-secondary" href="#contact">Contact Me</a>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-label="Animated abstract 3D orb">
+          <div class="orb"></div>
+          <div class="orbit-label">Ideas · Design · Code</div>
+        </div>
+      </section>
+
+      <section id="about" class="reveal">
+        <div class="section-heading">
+          <p class="eyebrow">A Little About Me</p>
+          <h2>Curious mind. <span class="gradient-text">Creative vision.</span></h2>
+        </div>
+        <div class="about-panel">
+          <p>
+            I'm WizzyDev, an aspiring creative developer passionate about building
+            modern websites, experimenting with AI-assisted development and exploring
+            interactive digital design.
+          </p>
+          <p>
+            I'm currently developing my skills through hands-on projects and
+            continuous learning. My goal is to turn interesting ideas into useful,
+            beautiful and engaging web experiences.
+          </p>
+          <p>
+            This portfolio is part of that journey — a place to experiment, improve
+            and showcase what I build along the way.
+          </p>
+        </div>
+      </section>
+
+      <section id="services" class="reveal">
+        <div class="section-heading">
+          <p class="eyebrow">What I'm Exploring</p>
+          <h2>Ideas I'm bringing to life.</h2>
+          <p>My current areas of focus as I grow into a creative developer.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <div class="card-icon">✳️</div>
+            <h3>Modern Web Design</h3>
+            <p>Clean layouts, strong visual identities and responsive experiences for the web.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">🤖</div>
+            <h3>AI-Assisted Development</h3>
+            <p>Exploring how AI tools can help transform ideas into working web experiences.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">🌐</div>
+            <h3>Interactive Experiences</h3>
+            <p>Experimenting with motion, depth, 3D-inspired visuals and engaging interfaces.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects" class="reveal">
+        <div class="section-heading">
+          <p class="eyebrow">Selected Concepts</p>
+          <h2>My creative playground.</h2>
+          <p>Concepts and practice projects to develop my design and coding skills.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <div class="project-visual">◈</div>
+            <span class="project-tag">Portfolio Concept</span>
+            <h3>Personal Portfolio</h3>
+            <p>A futuristic personal website exploring responsive design, gradients and CSS animation.</p>
+          </article>
+          <article class="card">
+            <div class="project-visual">✧</div>
+            <span class="project-tag">3D Design Concept</span>
+            <h3>Immersive Landing Page</h3>
+            <p>A concept for an interactive landing page with depth, motion and bold digital visuals.</p>
+          </article>
+          <article class="card">
+            <div class="project-visual">⌘</div>
+            <span class="project-tag">Web Design Concept</span>
+            <h3>Business Website</h3>
+            <p>A practice concept for a modern business website focused on clarity and mobile usability.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="skills" class="reveal">
+        <div class="section-heading">
+          <p class="eyebrow">My Learning Toolkit</p>
+          <h2>Skills I'm developing.</h2>
+          <p>Areas I'm actively learning and experimenting with.</p>
+        </div>
+        <div class="skill-list">
+          <span class="skill">HTML</span>
+          <span class="skill">CSS</span>
+          <span class="skill">JavaScript</span>
+          <span class="skill">Responsive Design</span>
+          <span class="skill">AI Tools</span>
+          <span class="skill">UI/UX Principles</span>
+          <span class="skill">Creative Coding</span>
+          <span class="skill">3D Web Concepts</span>
+        </div>
+      </section>
+
+      <section id="contact" class="reveal">
+        <div class="contact-panel">
+          <p class="eyebrow">Have an Idea?</p>
+          <h2>Let's create something <span class="gradient-text">different.</span></h2>
+          <p>
+            Have a project idea, collaboration opportunity or just want to connect?
+            Send me a message.
+          </p>
+          <a class="btn btn-primary" href="mailto:Wisdomundeyi6@gmail.com?subject=Let's%20Connect%20with%20WizzyDev">
+            Email WizzyDev ↗
+          </a>
+          <div class="contact-details">
+            <a href="mailto:Wisdomundeyi6@gmail.com">✉ Wisdomundeyi6@gmail.com</a>
+            <span>·</span>
+            <a href="tel:+2349167085570">☎ 09167085570</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> WizzyDev. Built with curiosity and creativity.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const revealElements = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      revealElements.forEach((element) => observer.observe(element));
+    } else {
+      revealElements.forEach((element) => element.classList.add("visible"));
+    }
+  </script>
+</body>
+</html>
