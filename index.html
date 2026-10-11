@@ -4,52 +4,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080914">
-  <meta name="description" content="WizzyDev — exploring creative development, AI-assisted websites, modern web design and interactive digital experiences.">
-  <title>WizzyDev | Creative Developer</title>
+  <meta name="theme-color" content="#070816">
+  <meta name="description" content="WizzyDev — aspiring creative developer exploring modern websites, AI-powered experiences and interactive web design.">
+  <title>WizzyDev | Digital Experiences</title>
 
   <style>
     :root {
-      --bg: #080914;
-      --panel: #101225;
-      --text: #f5f5ff;
-      --muted: #a5a8c3;
-      --blue: #65e5ff;
-      --purple: #a78bfa;
-      --line: rgba(255,255,255,.12);
+      --bg: #070816;
+      --panel: rgba(17, 20, 43, .72);
+      --text: #f5f6ff;
+      --muted: #a5abc7;
+      --blue: #62d8ff;
+      --purple: #9d72ff;
+      --border: rgba(164, 178, 255, .15);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(ellipse at 85% 5%, rgba(91,65,190,.18), transparent 35%),
-        radial-gradient(ellipse at 5% 40%, rgba(30,130,180,.10), transparent 35%),
-        var(--bg);
+      background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+      line-height: 1.7;
       overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 15% 10%, rgba(67, 68, 190, .18), transparent 38%),
+        radial-gradient(ellipse at 90% 40%, rgba(0, 177, 255, .10), transparent 35%),
+        #070816;
     }
 
     a { color: inherit; text-decoration: none; }
     button, a { -webkit-tap-highlight-color: transparent; }
 
-    .container { width: min(1100px, 90%); margin: auto; }
+    #particles {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
 
-    header {
+    .container { width: min(1120px, 90%); margin: auto; }
+
+    .nav-wrap {
       position: sticky;
       top: 0;
-      z-index: 10;
-      background: rgba(8,9,20,.82);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--line);
+      z-index: 20;
+      border-bottom: 1px solid var(--border);
+      background: rgba(7, 8, 22, .82);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
     }
 
     nav {
-      min-height: 72px;
+      min-height: 76px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -57,312 +76,423 @@
     }
 
     .logo {
-      font-size: 1.45rem;
-      font-weight: 850;
+      font-size: 1.35rem;
+      font-weight: 900;
       letter-spacing: -1px;
     }
 
-    .logo span { color: var(--blue); }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 23px;
-      font-size: .9rem;
-      color: var(--muted);
+    .logo span {
+      color: var(--blue);
+      text-shadow: 0 0 20px rgba(98, 216, 255, .5);
     }
 
+    .nav-links { display: flex; align-items: center; gap: 27px; }
+    .nav-links a { color: var(--muted); font-size: .88rem; transition: .2s; }
     .nav-links a:hover { color: var(--blue); }
 
-    .nav-cta {
-      border: 1px solid rgba(101,229,255,.45);
-      padding: 9px 15px;
-      border-radius: 999px;
-      color: var(--blue) !important;
+    .nav-cta, .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 12px 19px;
+      border-radius: 12px;
+      border: 1px solid rgba(98, 216, 255, .35);
+      background: linear-gradient(135deg, rgba(98,216,255,.13), rgba(157,114,255,.15));
+      color: white;
+      font-weight: 700;
+      font-size: .9rem;
+      transition: transform .25s, border-color .25s, box-shadow .25s;
+    }
+
+    .button:hover, .nav-cta:hover {
+      transform: translateY(-3px);
+      border-color: var(--blue);
+      box-shadow: 0 8px 30px rgba(98, 216, 255, .12);
+    }
+
+    .button.primary {
+      background: linear-gradient(110deg, #63d9ff, #9d85ff);
+      color: #080b1c;
+      border: none;
     }
 
     .hero {
-      min-height: 650px;
-      padding: 100px 0 90px;
+      min-height: 690px;
+      padding: 95px 0 105px;
       display: grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: 1.05fr .95fr;
       align-items: center;
-      gap: 40px;
+      gap: 35px;
     }
 
     .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
       color: var(--blue);
-      font-size: .78rem;
-      font-weight: 750;
-      letter-spacing: 2.5px;
+      border: 1px solid rgba(98,216,255,.22);
+      background: rgba(98,216,255,.06);
+      border-radius: 30px;
+      padding: 7px 13px;
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
-      margin-bottom: 20px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #6effbb;
+      box-shadow: 0 0 12px #6effbb;
     }
 
     h1 {
-      font-size: clamp(2.8rem, 6.5vw, 5.5rem);
-      line-height: 1.04;
+      font-size: clamp(3rem, 6.4vw, 5.5rem);
+      line-height: 1.02;
       letter-spacing: -4px;
-      max-width: 700px;
+      margin: 26px 0;
+      font-weight: 900;
     }
 
     .gradient-text {
-      background: linear-gradient(100deg, var(--blue), var(--purple), #f0abfc);
+      color: var(--blue);
+      background: linear-gradient(100deg, #70e1ff 5%, #9b89ff 55%, #e0a9ff);
       -webkit-background-clip: text;
       background-clip: text;
-      color: transparent;
+      -webkit-text-fill-color: transparent;
     }
 
     .hero-copy {
+      max-width: 520px;
       color: var(--muted);
-      font-size: 1.05rem;
-      max-width: 510px;
-      margin: 25px 0 30px;
+      font-size: 1.03rem;
+      margin-bottom: 29px;
     }
 
-    .actions { display: flex; gap: 13px; flex-wrap: wrap; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; }
+    .hero-note { margin-top: 22px; color: #838aa9; font-size: .8rem; }
 
-    .btn {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 48px;
-      padding: 12px 20px;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: .92rem;
-      transition: transform .2s, box-shadow .2s;
-    }
-
-    .btn:hover { transform: translateY(-3px); }
-
-    .btn-primary {
-      color: #070914;
-      background: linear-gradient(110deg, var(--blue), #b6a0ff);
-      box-shadow: 0 0 28px rgba(101,229,255,.14);
-    }
-
-    .btn-secondary {
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.035);
-    }
-
-    .hero-art {
-      min-height: 330px;
+    .visual {
+      position: relative;
+      min-height: 430px;
       display: grid;
       place-items: center;
-      position: relative;
-      perspective: 800px;
+      perspective: 900px;
+      isolation: isolate;
     }
 
-    .orb {
-      width: min(270px, 65vw);
-      aspect-ratio: 1;
-      border-radius: 50%;
-      position: relative;
-      background:
-        radial-gradient(circle at 30% 25%, #ffffff 0, #b5f7ff 3%, transparent 13%),
-        radial-gradient(circle at 35% 30%, #74eaff 0, #6852dc 28%, #17112f 57%, #080914 72%);
-      box-shadow:
-        inset -20px -20px 45px rgba(0,0,0,.7),
-        0 0 50px rgba(101,229,255,.25),
-        0 0 110px rgba(130,85,255,.2);
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .orb::before, .orb::after {
+    .visual::before {
       content: "";
       position: absolute;
-      inset: -18px;
-      border: 1px solid rgba(101,229,255,.6);
+      width: 280px;
+      height: 280px;
       border-radius: 50%;
-      transform: rotateX(68deg) rotateZ(-25deg);
+      background: #6155ff;
+      filter: blur(100px);
+      opacity: .24;
     }
 
-    .orb::after {
-      inset: -36px;
-      border-color: rgba(167,139,250,.55);
-      transform: rotateX(70deg) rotateZ(45deg);
-    }
-
-    .orbit-label {
-      position: absolute;
-      bottom: 12px;
-      color: var(--muted);
-      font-size: .8rem;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotateY(-10deg); }
-      50% { transform: translateY(-16px) rotateY(12deg); }
-    }
-
-    section { padding: 80px 0; }
-
-    .section-heading { margin-bottom: 34px; }
-
-    .section-heading h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      letter-spacing: -1.5px;
-      line-height: 1.15;
-    }
-
-    .section-heading p {
-      color: var(--muted);
-      margin-top: 12px;
-      max-width: 620px;
-    }
-
-    .about-panel {
-      border: 1px solid var(--line);
-      background: linear-gradient(135deg, rgba(255,255,255,.045), rgba(255,255,255,.015));
-      padding: 30px;
-      border-radius: 22px;
-    }
-
-    .about-panel p { color: var(--muted); margin-bottom: 14px; }
-    .about-panel p:last-child { margin-bottom: 0; }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 17px;
-    }
-
-    .card {
-      padding: 25px;
-      border: 1px solid var(--line);
-      border-radius: 19px;
-      background: rgba(255,255,255,.025);
-      transition: transform .25s, border-color .25s, background .25s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(101,229,255,.45);
-      background: rgba(101,229,255,.04);
-    }
-
-    .card-icon {
-      font-size: 1.8rem;
-      margin-bottom: 18px;
-    }
-
-    .card h3 { font-size: 1.08rem; margin-bottom: 9px; }
-    .card p { color: var(--muted); font-size: .92rem; }
-
-    .project-tag {
-      display: inline-block;
-      color: var(--blue);
-      background: rgba(101,229,255,.08);
-      border: 1px solid rgba(101,229,255,.17);
-      padding: 4px 9px;
-      border-radius: 99px;
-      font-size: .72rem;
-      margin-bottom: 15px;
-    }
-
-    .project-visual {
-      height: 130px;
-      border-radius: 12px;
-      margin-bottom: 20px;
+    .orbit-scene {
+      width: min(100%, 410px);
+      aspect-ratio: 1;
+      position: relative;
       display: grid;
       place-items: center;
-      font-size: 2.4rem;
+      transform-style: preserve-3d;
+      transition: transform .25s ease-out;
+    }
+
+    .core {
+      position: relative;
+      width: 155px;
+      height: 155px;
+      border-radius: 50%;
       background:
-        radial-gradient(circle at 70% 20%, rgba(167,139,250,.4), transparent 40%),
-        linear-gradient(135deg, #171b3b, #0a1525);
-      border: 1px solid rgba(255,255,255,.08);
+        radial-gradient(circle at 28% 22%, #f2fdff 0%, #a3eaff 5%, transparent 19%),
+        radial-gradient(circle at 35% 28%, #56caff, #6a55ed 42%, #151747 72%);
+      box-shadow:
+        inset -16px -18px 35px rgba(2, 4, 26, .8),
+        inset 10px 10px 30px rgba(255,255,255,.3),
+        0 0 35px rgba(78, 192, 255, .5),
+        0 0 100px rgba(116, 84, 255, .28);
+      animation: float 5s ease-in-out infinite;
+      z-index: 2;
     }
 
-    .skill-list { display: flex; flex-wrap: wrap; gap: 10px; }
-
-    .skill {
-      padding: 9px 13px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.035);
-      color: #d9dcf4;
-      border-radius: 9px;
-      font-size: .87rem;
+    .core::after {
+      content: "";
+      position: absolute;
+      inset: 15px;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 50%;
     }
 
-    .contact-panel {
-      text-align: center;
-      padding: 50px 25px;
-      border-radius: 24px;
-      border: 1px solid rgba(101,229,255,.2);
-      background: radial-gradient(ellipse at top, rgba(93,80,190,.16), transparent 70%);
+    .ring {
+      position: absolute;
+      width: 270px;
+      height: 270px;
+      border: 1px solid rgba(113, 202, 255, .55);
+      border-radius: 50%;
+      transform: rotateX(68deg) rotateZ(-22deg);
+      box-shadow: 0 0 20px rgba(82, 169, 255, .07);
+      animation: spin 13s linear infinite;
     }
 
-    .contact-panel h2 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
+    .ring.r2 {
+      width: 325px;
+      height: 325px;
+      border-color: rgba(174, 117, 255, .48);
+      transform: rotateX(68deg) rotateZ(52deg);
+      animation: spinReverse 17s linear infinite;
+    }
+
+    .ring.r3 {
+      width: 215px;
+      height: 345px;
+      border-color: rgba(98, 216, 255, .24);
+      transform: rotateY(65deg) rotateX(25deg);
+      animation: spin 21s linear infinite;
+    }
+
+    .satellite {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #b1f0ff;
+      box-shadow: 0 0 22px 5px rgba(98,216,255,.5);
+      top: 18%;
+      right: 23%;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .satellite.s2 {
+      top: 74%;
+      right: 18%;
+      width: 8px;
+      height: 8px;
+      background: #c5a4ff;
+      box-shadow: 0 0 20px 4px rgba(157,114,255,.5);
+      animation-delay: -2s;
+    }
+
+    .floating-card {
+      position: absolute;
+      padding: 11px 14px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: rgba(13, 16, 39, .86);
+      backdrop-filter: blur(12px);
+      color: #dce5ff;
+      font-size: .76rem;
+      box-shadow: 0 12px 40px rgba(0,0,0,.25);
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .floating-card strong { color: var(--blue); }
+    .fc1 { left: -2%; top: 24%; }
+    .fc2 { right: -2%; bottom: 23%; animation-delay: -2.5s; }
+
+    @keyframes float {
+      0%, 100% { translate: 0 0; }
+      50% { translate: 0 -12px; }
+    }
+
+    @keyframes spin { to { rotate: 360deg; } }
+    @keyframes spinReverse { to { rotate: -360deg; } }
+
+    section { padding: 90px 0; }
+
+    .section-head { max-width: 650px; margin-bottom: 36px; }
+    .kicker {
+      color: var(--blue);
+      text-transform: uppercase;
+      font-size: .76rem;
+      letter-spacing: 2px;
+      font-weight: 800;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1.15;
       letter-spacing: -1.5px;
+      margin: 12px 0 15px;
     }
 
-    .contact-panel p {
-      max-width: 550px;
-      margin: 15px auto 25px;
-      color: var(--muted);
+    .section-head p, .muted { color: var(--muted); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 20px;
     }
 
-    .contact-details {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 25px;
+    .panel, .project, .skill-card {
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, rgba(23, 27, 56, .78), rgba(12, 14, 32, .72));
+      border-radius: 22px;
+      padding: 28px;
+      transition: transform .25s, border-color .25s;
+    }
+
+    .panel:hover, .project:hover, .skill-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(98,216,255,.38);
+    }
+
+    .panel p { color: var(--muted); margin-top: 12px; }
+    .panel h3 { font-size: 1.25rem; }
+
+    .focus-list { display: grid; gap: 13px; margin-top: 18px; }
+    .focus-item { display: flex; gap: 12px; align-items: flex-start; color: #d7def8; }
+    .check { color: var(--blue); font-weight: 900; }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .project-art {
+      height: 150px;
+      border: 1px solid rgba(145, 160, 255, .15);
+      border-radius: 15px;
+      margin-bottom: 22px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      position: relative;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(94, 211, 255, .24), transparent 35%),
+        linear-gradient(140deg, rgba(80, 68, 200, .2), rgba(12, 16, 40, .7));
+    }
+
+    .project-art::before {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 28px;
+      border: 1px solid rgba(122, 218, 255, .6);
+      transform: rotate(35deg);
+      box-shadow: 0 0 35px rgba(98,216,255,.15), inset 0 0 25px rgba(157,114,255,.12);
+    }
+
+    .project-art span {
+      z-index: 1;
+      font-size: 2rem;
+      font-weight: 900;
+      color: #e2f9ff;
+      text-shadow: 0 0 25px rgba(98,216,255,.8);
+    }
+
+    .project h3 { margin-bottom: 8px; font-size: 1.12rem; }
+    .project p { color: var(--muted); font-size: .9rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 17px 0; }
+    .tag {
+      color: #bfc9ee;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.025);
+      padding: 4px 9px;
+      border-radius: 7px;
+      font-size: .72rem;
+    }
+
+    .project-link { color: var(--blue); font-size: .84rem; font-weight: 750; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .skill-card { padding: 22px; }
+    .skill-icon { font-size: 1.7rem; margin-bottom: 14px; }
+    .skill-card h3 { font-size: .98rem; margin-bottom: 6px; }
+    .skill-card p { color: var(--muted); font-size: .82rem; }
+
+    .learning-note {
+      margin-top: 22px;
+      border-left: 2px solid var(--blue);
+      padding: 13px 16px;
+      background: rgba(98,216,255,.045);
       color: var(--muted);
       font-size: .88rem;
     }
 
-    .contact-details a:hover { color: var(--blue); }
+    .contact-box {
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      border: 1px solid rgba(126, 151, 255, .24);
+      border-radius: 28px;
+      padding: 58px 24px;
+      background:
+        radial-gradient(ellipse at 50% 120%, rgba(103, 76, 255, .25), transparent 55%),
+        linear-gradient(145deg, rgba(20, 24, 54, .95), rgba(10, 12, 29, .95));
+    }
+
+    .contact-box p { color: var(--muted); max-width: 520px; margin: 0 auto 26px; }
+    .contact-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
 
     footer {
-      border-top: 1px solid var(--line);
-      padding: 24px 0;
-      color: var(--muted);
-      font-size: .82rem;
-      text-align: center;
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+      color: #858ca9;
+      font-size: .8rem;
     }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity .65s ease, transform .65s ease;
-    }
-
+    .footer-inner { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    @media (max-width: 760px) {
-      .nav-links { gap: 13px; font-size: .8rem; }
-      .nav-cta { display: none; }
-      .hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding: 75px 0 45px;
-        gap: 10px;
-      }
-      h1 { letter-spacing: -2px; }
-      .hero-copy { margin-left: auto; margin-right: auto; }
-      .actions { justify-content: center; }
-      .hero-art { min-height: 310px; }
-      .orb { width: 190px; }
-      section { padding: 60px 0; }
-      .grid { grid-template-columns: 1fr; }
-      .about-panel { padding: 23px; }
+    @media (max-width: 850px) {
+      .hero { grid-template-columns: 1fr; padding-top: 75px; gap: 10px; }
+      .hero-copy { max-width: 600px; }
+      .visual { min-height: 390px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .fc1 { left: 2%; }
+      .fc2 { right: 2%; }
     }
 
-    @media (max-width: 380px) {
-      .nav-links { gap: 9px; font-size: .75rem; }
-      .logo { font-size: 1.2rem; }
+    @media (max-width: 560px) {
+      .container { width: 90%; }
+      nav { min-height: 66px; }
+      .nav-links { gap: 14px; }
+      .nav-links a { font-size: .78rem; }
+      .nav-links a:nth-child(2), .nav-links a:nth-child(3) { display: none; }
+      .nav-cta { padding: 9px 12px; font-size: .78rem; }
+      .hero { min-height: auto; padding: 70px 0 55px; }
+      h1 { font-size: clamp(2.8rem, 13vw, 4rem); letter-spacing: -2.5px; }
+      .hero-copy { font-size: .95rem; }
+      .visual { min-height: 340px; }
+      .orbit-scene { max-width: 330px; }
+      .core { width: 125px; height: 125px; }
+      .ring { width: 220px; height: 220px; }
+      .ring.r2 { width: 270px; height: 270px; }
+      .ring.r3 { width: 175px; height: 290px; }
+      .floating-card { font-size: .67rem; padding: 8px 10px; }
+      .fc1 { left: 0; top: 20%; }
+      .fc2 { right: 0; bottom: 17%; }
+      section { padding: 65px 0; }
+      .project-grid { grid-template-columns: 1fr; }
+      .skills-grid { gap: 10px; }
+      .skill-card { padding: 17px; }
+      .panel, .project { padding: 21px; }
+      .contact-box { padding: 42px 19px; }
+      .footer-inner { flex-direction: column; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
-        animation-duration: .01ms !important;
         scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
         transition-duration: .01ms !important;
       }
       .reveal { opacity: 1; transform: none; }
@@ -371,182 +501,276 @@
 </head>
 
 <body>
-  <header>
-    <nav class="container" aria-label="Main navigation">
-      <a class="logo" href="#home">Wizzy<span>Dev</span>.</a>
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <div class="nav-wrap">
+    <nav class="container">
+      <a class="logo" href="#home" aria-label="WizzyDev home">Wizzy<span>Dev.</span></a>
       <div class="nav-links">
         <a href="#about">About</a>
-        <a href="#services">Services</a>
         <a href="#projects">Projects</a>
-        <a class="nav-cta" href="#contact">Let's Talk ↗</a>
+        <a href="#skills">Skills</a>
+        <a class="nav-cta" href="#contact">Let's talk ↗</a>
       </div>
     </nav>
-  </header>
+  </div>
 
   <main>
-    <div class="container">
-      <section class="hero" id="home">
-        <div>
-          <p class="eyebrow">Creative Developer in Progress</p>
-          <h1>I Turn Ideas Into <span class="gradient-text">Digital Experiences.</span></h1>
-          <p class="hero-copy">
-            Exploring the intersection of AI, creative coding and modern web design
-            to build digital experiences that feel different.
-          </p>
-          <div class="actions">
-            <a class="btn btn-primary" href="#projects">Explore My Work ↗</a>
-            <a class="btn btn-secondary" href="#contact">Contact Me</a>
-          </div>
+    <header class="container hero" id="home">
+      <div class="hero-content">
+        <div class="eyebrow"><span class="status-dot"></span> Building my digital future</div>
+        <h1>I Turn Ideas Into <span class="gradient-text">Digital Experiences.</span></h1>
+        <p class="hero-copy">
+          I'm WizzyDev, an aspiring creative developer exploring modern websites,
+          AI-assisted ideas and interactive digital experiences. I'm learning,
+          experimenting and building one project at a time.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#projects">Explore my work <span>↗</span></a>
+          <a class="button" href="#about">Get to know me</a>
+        </div>
+        <p class="hero-note">Curiosity first. Creativity always. Progress every day.</p>
+      </div>
+
+      <div class="visual" aria-label="Animated futuristic digital orb">
+        <div class="orbit-scene" id="orbitScene">
+          <div class="ring"></div>
+          <div class="ring r2"></div>
+          <div class="ring r3"></div>
+          <div class="core"></div>
+          <div class="satellite"></div>
+          <div class="satellite s2"></div>
+          <div class="floating-card fc1">✦ <strong>Creative</strong> thinking</div>
+          <div class="floating-card fc2">AI + <strong>Web</strong> experiments</div>
+        </div>
+      </div>
+    </header>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">01 / About me</span>
+          <h2>Learning to build what's <span class="gradient-text">next.</span></h2>
+          <p>I believe good digital experiences should look beautiful, feel intuitive and solve real problems.</p>
         </div>
 
-        <div class="hero-art" aria-label="Animated abstract 3D orb">
-          <div class="orb"></div>
-          <div class="orbit-label">Ideas · Design · Code</div>
-        </div>
-      </section>
+        <div class="about-grid">
+          <article class="panel reveal">
+            <h3>My journey</h3>
+            <p>
+              I'm developing my skills in web design, front-end development and AI-powered tools.
+              This portfolio is part of my journey: a place to practise, share experiments and turn
+              ideas into real projects.
+            </p>
+            <p>
+              My goal is to keep learning through hands-on work and grow into a developer who can
+              combine thoughtful design with useful technology.
+            </p>
+          </article>
 
-      <section id="about" class="reveal">
-        <div class="section-heading">
-          <p class="eyebrow">A Little About Me</p>
-          <h2>Curious mind. <span class="gradient-text">Creative vision.</span></h2>
+          <article class="panel reveal">
+            <h3>What I'm exploring</h3>
+            <div class="focus-list">
+              <div class="focus-item"><span class="check">✦</span><span>Modern, responsive website design</span></div>
+              <div class="focus-item"><span class="check">✦</span><span>Interactive visuals and CSS animations</span></div>
+              <div class="focus-item"><span class="check">✦</span><span>AI-assisted creative workflows</span></div>
+              <div class="focus-item"><span class="check">✦</span><span>Building practical projects to improve my code</span></div>
+            </div>
+          </article>
         </div>
-        <div class="about-panel">
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">02 / Selected concepts</span>
+          <h2>Ideas becoming <span class="gradient-text">reality.</span></h2>
+          <p>These are concept projects and practice directions. As I complete real builds, I'll add live demos and source code here.</p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project reveal">
+            <div class="project-art"><span>WD.</span></div>
+            <h3>Creative Developer Portfolio</h3>
+            <p>A personal digital home built to explore responsive layouts, visual identity and motion.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+            <a class="project-link" href="#home">You're viewing this concept ↗</a>
+          </article>
+
+          <article class="project reveal">
+            <div class="project-art"><span>3D</span></div>
+            <h3>Immersive 3D Landing Page</h3>
+            <p>A concept for a futuristic landing page using depth, animated forms and interactive visuals.</p>
+            <div class="tags"><span class="tag">3D Design</span><span class="tag">Animation</span><span class="tag">UI</span></div>
+            <span class="project-link">Concept in progress</span>
+          </article>
+
+          <article class="project reveal">
+            <div class="project-art"><span>AI+</span></div>
+            <h3>AI-Powered Web Experience</h3>
+            <p>A future experiment exploring how useful AI features could make a website more engaging.</p>
+            <div class="tags"><span class="tag">AI Tools</span><span class="tag">Web Apps</span><span class="tag">UX</span></div>
+            <span class="project-link">Concept in progress</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">03 / My toolkit</span>
+          <h2>Skills I'm <span class="gradient-text">developing.</span></h2>
+          <p>These are learning areas, not claims of professional mastery. The focus is steady, practical progress.</p>
+        </div>
+
+        <div class="skills-grid">
+          <article class="skill-card reveal">
+            <div class="skill-icon">⌘</div>
+            <h3>Web Development</h3>
+            <p>Learning HTML, CSS and JavaScript fundamentals.</p>
+          </article>
+          <article class="skill-card reveal">
+            <div class="skill-icon">✳</div>
+            <h3>UI / UX Design</h3>
+            <p>Exploring layout, usability and visual hierarchy.</p>
+          </article>
+          <article class="skill-card reveal">
+            <div class="skill-icon">◈</div>
+            <h3>AI Workflows</h3>
+            <p>Using AI tools to support research and creative ideas.</p>
+          </article>
+          <article class="skill-card reveal">
+            <div class="skill-icon">✧</div>
+            <h3>Creative Technology</h3>
+            <p>Experimenting with motion, effects and interactive design.</p>
+          </article>
+        </div>
+
+        <div class="learning-note reveal">
+          <strong>Current mindset:</strong> learn the fundamentals, build consistently, test the result and improve with every project.
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box reveal">
+          <span class="kicker">04 / Get in touch</span>
+          <h2>Have an idea? Let's <span class="gradient-text">connect.</span></h2>
           <p>
-            I'm WizzyDev, an aspiring creative developer passionate about building
-            modern websites, experimenting with AI-assisted development and exploring
-            interactive digital design.
-          </p>
-          <p>
-            I'm currently developing my skills through hands-on projects and
-            continuous learning. My goal is to turn interesting ideas into useful,
-            beautiful and engaging web experiences.
-          </p>
-          <p>
-            This portfolio is part of that journey — a place to experiment, improve
-            and showcase what I build along the way.
-          </p>
-        </div>
-      </section>
-
-      <section id="services" class="reveal">
-        <div class="section-heading">
-          <p class="eyebrow">What I'm Exploring</p>
-          <h2>Ideas I'm bringing to life.</h2>
-          <p>My current areas of focus as I grow into a creative developer.</p>
-        </div>
-
-        <div class="grid">
-          <article class="card">
-            <div class="card-icon">✳️</div>
-            <h3>Modern Web Design</h3>
-            <p>Clean layouts, strong visual identities and responsive experiences for the web.</p>
-          </article>
-          <article class="card">
-            <div class="card-icon">🤖</div>
-            <h3>AI-Assisted Development</h3>
-            <p>Exploring how AI tools can help transform ideas into working web experiences.</p>
-          </article>
-          <article class="card">
-            <div class="card-icon">🌐</div>
-            <h3>Interactive Experiences</h3>
-            <p>Experimenting with motion, depth, 3D-inspired visuals and engaging interfaces.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="projects" class="reveal">
-        <div class="section-heading">
-          <p class="eyebrow">Selected Concepts</p>
-          <h2>My creative playground.</h2>
-          <p>Concepts and practice projects to develop my design and coding skills.</p>
-        </div>
-
-        <div class="grid">
-          <article class="card">
-            <div class="project-visual">◈</div>
-            <span class="project-tag">Portfolio Concept</span>
-            <h3>Personal Portfolio</h3>
-            <p>A futuristic personal website exploring responsive design, gradients and CSS animation.</p>
-          </article>
-          <article class="card">
-            <div class="project-visual">✧</div>
-            <span class="project-tag">3D Design Concept</span>
-            <h3>Immersive Landing Page</h3>
-            <p>A concept for an interactive landing page with depth, motion and bold digital visuals.</p>
-          </article>
-          <article class="card">
-            <div class="project-visual">⌘</div>
-            <span class="project-tag">Web Design Concept</span>
-            <h3>Business Website</h3>
-            <p>A practice concept for a modern business website focused on clarity and mobile usability.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="skills" class="reveal">
-        <div class="section-heading">
-          <p class="eyebrow">My Learning Toolkit</p>
-          <h2>Skills I'm developing.</h2>
-          <p>Areas I'm actively learning and experimenting with.</p>
-        </div>
-        <div class="skill-list">
-          <span class="skill">HTML</span>
-          <span class="skill">CSS</span>
-          <span class="skill">JavaScript</span>
-          <span class="skill">Responsive Design</span>
-          <span class="skill">AI Tools</span>
-          <span class="skill">UI/UX Principles</span>
-          <span class="skill">Creative Coding</span>
-          <span class="skill">3D Web Concepts</span>
-        </div>
-      </section>
-
-      <section id="contact" class="reveal">
-        <div class="contact-panel">
-          <p class="eyebrow">Have an Idea?</p>
-          <h2>Let's create something <span class="gradient-text">different.</span></h2>
-          <p>
-            Have a project idea, collaboration opportunity or just want to connect?
+            Interested in sharing ideas, discussing a project or following my development journey?
             Send me a message.
           </p>
-          <a class="btn btn-primary" href="mailto:Wisdomundeyi6@gmail.com?subject=Let's%20Connect%20with%20WizzyDev">
-            Email WizzyDev ↗
-          </a>
-          <div class="contact-details">
-            <a href="mailto:Wisdomundeyi6@gmail.com">✉ Wisdomundeyi6@gmail.com</a>
-            <span>·</span>
-            <a href="tel:+2349167085570">☎ 09167085570</a>
+          <div class="contact-actions">
+            <a class="button primary" href="mailto:Wisdomundeyi6@gmail.com?subject=Hello%20WizzyDev">Email me ↗</a>
+            <a class="button" href="https://github.com/wizzydev01/wizzydev-portfolio" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a class="button" href="tel:09167085570">Call me</a>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   </main>
 
   <footer>
-    <div class="container">
-      <p>© <span id="year"></span> WizzyDev. Built with curiosity and creativity.</p>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> WizzyDev. Built with curiosity.</span>
+      <span>Learning today. Building for tomorrow.</span>
     </div>
   </footer>
 
   <script>
+    // Reveal sections as they enter the screen.
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    const revealElements = document.querySelectorAll(".reveal");
+    // Lightweight interactive 3D-style tilt; disable on touch-only devices.
+    const scene = document.getElementById("orbitScene");
+    const visual = document.querySelector(".visual");
+    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12 });
+    if (canHover) {
+      visual.addEventListener("pointermove", (event) => {
+        const rect = visual.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+        scene.style.transform = `rotateY(${x * 16}deg) rotateX(${-y * 16}deg)`;
+      });
 
-      revealElements.forEach((element) => observer.observe(element));
-    } else {
-      revealElements.forEach((element) => element.classList.add("visible"));
+      visual.addEventListener("pointerleave", () => {
+        scene.style.transform = "rotateY(0deg) rotateX(0deg)";
+      });
     }
+
+    // Subtle, responsive background particles.
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+    let particles = [];
+    let width = 0;
+    let height = 0;
+    let frame = 0;
+
+    function resizeCanvas() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const count = Math.min(65, Math.floor(width / 16));
+      particles = Array.from({ length: count }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 1.5 + 0.3,
+        speed: Math.random() * 0.22 + 0.05,
+        alpha: Math.random() * 0.45 + 0.12
+      }));
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, width, height);
+
+      particles.forEach(p => {
+        p.y -= p.speed;
+        if (p.y < -5) {
+          p.y = height + 5;
+          p.x = Math.random() * width;
+        }
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(139, 190, 255, ${p.alpha})`;
+        ctx.fill();
+      });
+
+      frame = requestAnimationFrame(drawParticles);
+    }
+
+    resizeCanvas();
+    drawParticles();
+
+    window.addEventListener("resize", resizeCanvas, { passive: true });
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        cancelAnimationFrame(frame);
+      } else {
+        cancelAnimationFrame(frame);
+        drawParticles();
+      }
+    });
   </script>
 </body>
 </html>
+
