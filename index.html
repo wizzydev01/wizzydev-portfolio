@@ -496,7 +496,62 @@
         transition-duration: .01ms !important;
       }
       .reveal { opacity: 1; transform: none; }
-    }
+    } 
+    /* WizzyDev premium visual upgrade */
+:root {
+–panel: rgba(17, 20, 43, 0.78);
+–border: rgba(164, 178, 255, 0.22);
+}
+
+body {
+background:
+radial-gradient(ellipse at 15% 10%, rgba(98, 216, 255, 0.09), transparent 35%),
+radial-gradient(ellipse at 85% 25%, rgba(157, 114, 255, 0.12), transparent 38%),
+var(–bg);
+}
+
+.nav-wrap {
+backdrop-filter: blur(18px);
+-webkit-backdrop-filter: blur(18px);
+}
+
+nav a,
+button,
+.btn,
+.card,
+.project-card {
+transition: transform 0.25s ease, border-color 0.25s ease,
+box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.card,
+.project-card {
+border-color: var(–border);
+background: linear-gradient(
+145deg,
+rgba(255, 255, 255, 0.055),
+rgba(255, 255, 255, 0.015)
+);
+box-shadow: 0 12px 40px rgba(0, 0, 0, 0.14);
+}
+
+@media (hover: hover) {
+.card:hover,
+.project-card:hover {
+transform: translateY(-5px);
+border-color: rgba(98, 216, 255, 0.45);
+box-shadow: 0 18px 45px rgba(98, 216, 255, 0.09);
+}
+}
+
+@media (prefers-reduced-motion: reduce) {
+nav a,
+button,
+.btn,
+.card,
+.project-card {
+transition: none !important;
+}
   </style>
 </head>
 
